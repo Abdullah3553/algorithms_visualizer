@@ -4,6 +4,63 @@ import random
 
 
 def main(arr_size, rand_choice):
+    # array initialization
+    arr = []
+    maxm_num = -1
+    if rand_choice:
+        for i in range(arr_size):
+            arr.append(random.randint(0, 50))
+            if arr[len(arr) - 1] > maxm_num:
+                maxm_num = arr[len(arr) - 1]
+    else:
+        numbers_window = Tk()
+
+        def numbers_ok_btn_comm():
+
+            def str_to_int(strng):
+                num = 0
+                tens = 1
+                negative_num = False
+                for strng_char in strng:
+                    if strng_char != '-':
+                        num += (int(strng_char)*tens)
+                        tens *= 10
+                    else:
+                        negative_num = True
+                if negative_num:
+                    num *= -1
+                return num
+
+            numbers = numbers_entry.get()
+            tmp_str = ""
+            loop_sz = len(numbers)
+            for char in range(loop_sz):
+                if numbers[char] == ' ' and tmp_str != "":
+                    arr.append(str_to_int(reversed(tmp_str)))
+                    tmp_str = ""
+                elif (numbers[char] < '0' or numbers[char] > '9') and numbers[char] != '-':
+                    messagebox.showerror(title="Wrong Entry", message="Wrong numbers !")
+                else:
+                    tmp_str += numbers[char]
+                    # print("Else worked")
+                    if char+1 == loop_sz:
+                        # print("if inside else worked")
+                        arr.append(str_to_int(reversed(tmp_str)))
+            numbers_window.destroy()
+
+        btn_entry_frm = Frame()
+        txt_enter_lbl = Label(text=f"Enter {arr_size} numbers separated by spaces ", font=("bold", 13))
+        txt_enter_lbl.grid(row=0, column=0, padx=5, pady=5)
+        numbers_entry = Entry(master=btn_entry_frm, width=20)
+        numbers_entry.grid(row=1, column=0)
+        numbers_ok_btn = Button(master=btn_entry_frm, text="OK", command=numbers_ok_btn_comm)
+        numbers_ok_btn.grid(row=1, column=1, padx=10)
+        btn_entry_frm.grid(row=1, column=0)
+
+        numbers_window.mainloop()
+        for i in range(arr_size):
+            pass
+
     main_window = Tk()
     lop1 = 0
     lop2 = lop1 + 1
@@ -54,19 +111,10 @@ def main(arr_size, rand_choice):
                 is_sorted = True
             cur_op = 1
 
-    # array initialization
-    arr = []
-    maxm_num = -1
-    if rand_choice:
-        for i in range(arr_size):
-            arr.append(random.randint(0, 50))
-            if arr[len(arr)-1] > maxm_num:
-                maxm_num = arr[len(arr)-1]
-
     #  Labels initialization and printing
     arr_lbl = []
     for i in range(arr_size):
-        arr_lbl.append(Label(text=str(arr[i]), width=arr[i], bg='blue'))
+        arr_lbl.append(Label(text=str(arr[i]), width=abs(arr[i]), bg='blue'))
     for i in range(arr_size):
         arr_lbl[i].grid(row=i, column=0, pady=1)
     btn_1 = Button(text="Next", command=one_op)

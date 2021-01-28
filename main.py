@@ -17,7 +17,7 @@ bbl_sort_rdio = Radiobutton(master=algo_rdio_frm, text="Bubble Sort", variable=c
 
 def ok_btn_comm():
     if choosen_algo_val.get() != "none":
-        size_enter_window = Tk()
+        size_enter_window = Toplevel()
         rand_choice = BooleanVar(master=size_enter_window)
         array_sz = IntVar(master=size_enter_window)
         size_entry_frm = Frame(master=size_enter_window, borderwidth=1)
@@ -63,8 +63,6 @@ bbl_sort_rdio.grid(row=2, column=1)
 # bbl_sort_rdio2.grid(row=2, column=0)
 ok_btn = Button(text='OK', command=ok_btn_comm)
 ok_btn.grid(row=3, column=2)
-
-
 start_window.mainloop()
 
 
