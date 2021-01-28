@@ -13,32 +13,35 @@ bbl_sort_rdio = Radiobutton(master=algo_rdio_frm, text="Bubble Sort", variable=c
                             , selectcolor="grey")
 # bbl_sort_rdio2 = Radiobutton(master=algo_rdio_frm, text="None", variable=choosen_algo_val, value="none"
 #                              , selectcolor="grey")
-array_sz = 0
-rand_choice = ""
 
 
 def ok_btn_comm():
     if choosen_algo_val.get() != "none":
         size_enter_window = Tk()
-        rand_choice_in = BooleanVar(master=size_enter_window)
-        array_sz_in = IntVar(master=size_enter_window)
+        rand_choice = BooleanVar(master=size_enter_window)
+        array_sz = IntVar(master=size_enter_window)
         size_entry_frm = Frame(master=size_enter_window, borderwidth=1)
-        size_entry = Entry(master=size_entry_frm, width=5, textvariable=array_sz_in)
+        size_entry = Entry(master=size_entry_frm, width=5, textvariable=array_sz)
         size_entry_lbl = Label(master=size_entry_frm, text="Enter the array size")
 
         def choosen_ok_btn_comm():
             try:
-                global array_sz, rand_choice
-                rand_choice = bool(rand_choice_in.get())
-                array_sz = int(array_sz_in.get())
-                size_enter_window.destroy()
-                start_window.destroy()
-                bbl_sort.main(array_sz, rand_choice)
-            except ValueError:
+                nonlocal array_sz, rand_choice
+                if int(array_sz.get()) > 0:
+                    rand_choice = bool(rand_choice.get())
+                    array_sz = int(array_sz.get())
+                    size_enter_window.destroy()
+                    start_window.destroy()
+                    bbl_sort.main(array_sz, rand_choice)
+                else:
+                    messagebox.showerror(master=size_enter_window, title="Wrong Entry"
+                                         , message="Negative or zero size entered")
+            except TclError:
                 messagebox.showerror(master=size_enter_window, title="Wrong Entry", message="Wrong size entered !")
 
         rand_choice_chk = Checkbutton(master=size_enter_window, text="Random Array", onvalue=True, offvalue=False
-                                      , variable=rand_choice_in, selectcolor="grey")
+                                      , variable=rand_choice, selectcolor="grey")
+        rand_choice.set(True)
         choosen_ok_btn = Button(master=size_enter_window, text="OK", command=choosen_ok_btn_comm, width=10)
         size_entry_frm.grid(row=1, column=1, padx=5, pady=5)
         size_entry_lbl.grid(row=1, column=0, padx=5)
