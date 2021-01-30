@@ -9,8 +9,8 @@ hola_lbl = Label(master=hola_lbl_frm, text="~<< Welcome to Algorithms Visualizer
 choose_lbl = Label(text="Choose the algorithm you want to Visualize")
 choosen_algo_val = StringVar()
 algo_rdio_frm = Frame(master=start_window)
-bbl_sort_rdio = Radiobutton(master=algo_rdio_frm, text="Bubble Sort", variable=choosen_algo_val, value="bubble_sort"
-                            , selectcolor="grey")
+bbl_sort_rdio = Radiobutton(master=algo_rdio_frm, text="Bubble Sort", variable=choosen_algo_val, value="bubble_sort",
+                            selectcolor="grey")
 
 
 def ok_btn_comm():  # when ok button is pressed in the start window
@@ -22,8 +22,8 @@ def ok_btn_comm():  # when ok button is pressed in the start window
         size_entry_frm = Frame(master=size_enter_window, borderwidth=1)
         size_entry = Entry(master=size_entry_frm, width=5, textvariable=array_sz)
         size_entry_lbl = Label(master=size_entry_frm, text="Enter the array size (20 is maximum)")
-        rand_choice_chk = Checkbutton(master=size_enter_window, text="Random Array", onvalue=True, offvalue=False
-                                      , variable=rand_choice, selectcolor="grey")
+        rand_choice_chk = Checkbutton(master=size_enter_window, text="Random Array", onvalue=True, offvalue=False,
+                                      variable=rand_choice, selectcolor="grey")
 
         def choosen_ok_btn_comm():  # when ok button is pressed in size enter window
             try:
@@ -40,8 +40,8 @@ def ok_btn_comm():  # when ok button is pressed in the start window
                         if choosen_algo_val.get() == "bubble_sort":
                             implemented_algorithms.bubble_sort(array_sz, rand_choice)
                 else:
-                    messagebox.showerror(master=size_enter_window, title="Wrong Entry"
-                                         , message="Negative or zero size entered")
+                    messagebox.showerror(master=size_enter_window, title="Wrong Entry",
+                                         message="Negative or zero size entered")
             except TclError:
                 messagebox.showerror(master=size_enter_window, title="Wrong Entry", message="Wrong size entered !")
 
@@ -68,5 +68,3 @@ bbl_sort_rdio.grid(row=2, column=1)
 ok_btn = Button(text='OK', command=ok_btn_comm)
 ok_btn.grid(row=3, column=2)
 start_window.mainloop()
-
-
