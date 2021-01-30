@@ -3,7 +3,7 @@ from tkinter import messagebox
 import random
 
 
-def main(arr_size, rand_choice):
+def bubble_sort(arr_size, rand_choice):
     # array initialization
     arr = []
     maxm_num = -1
