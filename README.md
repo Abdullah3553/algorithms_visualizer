@@ -15,7 +15,7 @@
 
 # Files description : 
   main.py is the main file that will be executed when running the project. Otherwise, YOu have unexpected errors.
-  implemented_algorithms.py is the file that contain the implemented algorithms in the project. 
+  \nimplemented_algorithms.py is the file that contain the implemented algorithms in the project. 
     For now, Bubble sort is the only algorithm implemented in the project. But i hope i the future i will extend the project and implement more algorithms .
     
 # Live version ? 
