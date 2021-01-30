@@ -22,17 +22,20 @@ def ok_btn_comm():
         array_sz = IntVar(master=size_enter_window)
         size_entry_frm = Frame(master=size_enter_window, borderwidth=1)
         size_entry = Entry(master=size_entry_frm, width=5, textvariable=array_sz)
-        size_entry_lbl = Label(master=size_entry_frm, text="Enter the array size")
+        size_entry_lbl = Label(master=size_entry_frm, text="Enter the array size (20 is maximum)")
 
         def choosen_ok_btn_comm():
             try:
                 nonlocal array_sz, rand_choice
                 if int(array_sz.get()) > 0:
-                    rand_choice = bool(rand_choice.get())
-                    array_sz = int(array_sz.get())
-                    size_enter_window.destroy()
-                    start_window.destroy()
-                    bbl_sort.main(array_sz, rand_choice)
+                    if int(array_sz.get()) > 20:
+                        messagebox.showerror(title="size exceeded", message="20 is the maximum size !")
+                    else:
+                        rand_choice = bool(rand_choice.get())
+                        array_sz = int(array_sz.get())
+                        size_enter_window.destroy()
+                        start_window.destroy()
+                        bbl_sort.main(array_sz, rand_choice)
                 else:
                     messagebox.showerror(master=size_enter_window, title="Wrong Entry"
                                          , message="Negative or zero size entered")
