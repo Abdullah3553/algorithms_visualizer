@@ -11,6 +11,8 @@ choosen_algo_val = StringVar()
 algo_rdio_frm = Frame(master=start_window)
 bbl_sort_rdio = Radiobutton(master=algo_rdio_frm, text="Bubble Sort", variable=choosen_algo_val, value="bubble_sort",
                             selectcolor="grey")
+sel_sort_rdio = Radiobutton(master=algo_rdio_frm, text="Selection Sort", variable=choosen_algo_val,
+                            value="selection_sort", selectcolor="grey")
 
 
 def ok_btn_comm():  # when ok button is pressed in the start window
@@ -37,8 +39,7 @@ def ok_btn_comm():  # when ok button is pressed in the start window
                         size_enter_window.destroy()            # close size enter window
                         start_window.destroy()                 # close start window
                         # call the selected algorithm
-                        if choosen_algo_val.get() == "bubble_sort":
-                            implemented_algorithms.bubble_sort(array_sz, rand_choice)
+                        implemented_algorithms.element_enter(array_sz, rand_choice, choosen_algo_val.get())
                 else:
                     messagebox.showerror(master=size_enter_window, title="Wrong Entry",
                                          message="Negative or zero size entered")
@@ -65,6 +66,7 @@ choose_lbl.grid(row=1, column=2)
 choosen_algo_val.set("none")
 algo_rdio_frm.grid(row=2, column=2)
 bbl_sort_rdio.grid(row=2, column=1)
+sel_sort_rdio.grid(row=2, column=2)
 ok_btn = Button(text='OK', command=ok_btn_comm)
 ok_btn.grid(row=3, column=2)
 start_window.mainloop()
