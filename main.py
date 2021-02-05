@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-import implemented_algorithms
+import numbers_generation
 
 # Initializations ;
 start_window = Tk()
@@ -39,7 +39,7 @@ def ok_btn_comm():  # when ok button is pressed in the start window
                         size_enter_window.destroy()            # close size enter window
                         start_window.destroy()                 # close start window
                         # call the selected algorithm
-                        implemented_algorithms.element_enter(array_sz, rand_choice, choosen_algo_val.get())
+                        numbers_generation.element_enter(array_sz, rand_choice, choosen_algo_val.get())
                 else:
                     messagebox.showerror(master=size_enter_window, title="Wrong Entry",
                                          message="Negative or zero size entered")

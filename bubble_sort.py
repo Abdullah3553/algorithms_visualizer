@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import shared_functions
 
 
 def main(arr, maxm_num):
@@ -20,14 +21,23 @@ def main(arr, maxm_num):
 
     def one_op():  # when next button is pressed >>
         nonlocal lop1, lop2, is_sorted, cur_op
+        # if is_sorted:
+        #     for k in range(arr_size - 1):  # sorting checking
+        #         if int(arr_lbl[k]['text']) <= int(arr_lbl[k + 1]['text']):
+        #             is_sorted = True
+        #         else:
+        #             is_sorted = False
+        #             break
         if is_sorted:
-            for k in range(arr_size - 1):  # sorting checking
-                if int(arr_lbl[k]['text']) <= int(arr_lbl[k + 1]['text']):
-                    is_sorted = True
-                else:
-                    is_sorted = False
-                    break
-        if is_sorted:
+            if int(arr_lbl[0]['text']) < 0:
+                arr_lbl[0]['bg'] = '#4c035e'
+                arr_lbl[0]['fg'] = "White"
+            elif int(arr_lbl[0]['text']) > 0:
+                arr_lbl[0]['bg'] = '#ad06d6'
+                arr_lbl[0]['fg'] = "White"
+            else:
+                arr_lbl[0]['bg'] = '#ad63bf'
+                arr_lbl[0]['fg'] = "Black"
             messagebox.showinfo("Yay :d", "The array is sorted !")
             return
 
@@ -51,8 +61,10 @@ def main(arr, maxm_num):
                     lop2 += 1
                 else:  # loop check operation
                     op_lbl["text"] = "Loop Check operation"
+                    arr_lbl[lop2] = shared_functions.sorted_color_handle(arr_lbl[lop2])
                     lop1 += 1
                     lop2 = 0
+
             else:
                 is_sorted = True
             cur_op = 1
