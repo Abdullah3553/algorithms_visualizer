@@ -6,5 +6,6 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-build/
-dist/
+
+/home/abdullah/PycharmProjects/algorithms_visualizer/dist
+/home/abdullah/PycharmProjects/algorithms_visualizer/build
